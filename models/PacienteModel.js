@@ -6,7 +6,12 @@ const Paciente = db.define("Paciente", {
   cpf: { type: DataTypes.STRING, unique: true },
   historico_medico: { type: DataTypes.STRING, allowNull: true },
   alergia: { type: DataTypes.STRING, allowNull: true },
-  observacoes: { type: DataTypes.STRING, defaultValue: true }
+  observacoes: { type: DataTypes.STRING, defaultValue: true },
+  estado: {type: DataTypes.STRING, allowNull: false},
+  cidade: {type: DataTypes.STRING, allowNull: false}, 
+  endereco: {type: DataTypes.STRING, allowNull: false},
+  numero: {type: DataTypes.STRING, allowNull: true},
+  complemento: {type: DataTypes.STRING, allowNull: true}
 });
 
 export default Paciente;

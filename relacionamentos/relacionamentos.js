@@ -25,3 +25,6 @@ Servico.belongsToMany(Agenda, { through: AgendaServico, foreignKey: "serviceId" 
 Agenda.hasOne(Pagamento, { foreignKey: "appointmentId" });
 Pagamento.belongsTo(Agenda, { foreignKey: "appointmentId" });
 
+Agenda.belongsTo(AgendaServico, { foreignKey: "id_agenda" });
+AgendaServico.hasMany(Agenda, { foreignKey: "id_agenda" });
+
