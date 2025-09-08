@@ -6,6 +6,8 @@ import db from './data/db.js'
 // routes
 import UserRoute from './routes/UsuarioRoute.js'
 import PacienteRoute from './routes/PacienteRoute.js'
+import ServicoRoute from './routes/ServicoRoute.js'
+import agendaRoute from './routes/AgendaRoute.js'
 
 
 const app = express()
@@ -17,6 +19,8 @@ app.use(express.json())
 // rotas 
 app.use('/user', UserRoute)
 app.use('/paciente', PacienteRoute)
+app.use('/servico', ServicoRoute)
+app.use('/agenda', agendaRoute)
 
 // iniciar servidor 
 async function iniciarServidor(){
