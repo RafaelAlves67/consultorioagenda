@@ -1,23 +1,22 @@
-import { configDotenv } from "dotenv"
 import jwt from 'jsonwebtoken'
+import { configDotenv } from 'dotenv'
 configDotenv()
+const secret = process.env.SECRET
 
-const SECRET = process.env.SECRET 
-
-export async function authToken(req,res,next){
-    const headerToken = req.headers['authorizarion']
-    const token = headerToken && headerToken.slipt(' ')[1] 
+export const authToken = (req,res,next) => {
+    const tokenHeader = req.headers['authorization']  
+    const token = tokenHeader && tokenHeader.split(' ')[1]
 
     if(!token){
         return res.status(403).json({msg: "Acesso negado!"})
     }
 
-    jwt.verify(token, SECRET, (error, result) => {
+    jwt.verify(token, secret, (error, user) => {
         if(error){
             return res.status(403).json({msg: "Token inválido!"})
         }
 
-        req.id = id 
+        req.user = user 
         next()
     })
 }

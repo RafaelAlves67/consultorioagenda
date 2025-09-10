@@ -15,6 +15,12 @@ export async function cadastrarPaciente(req,res){
         return res.status(400).json({msg: "CPF inválido"})
     }
 
+    // verifica se existe o cpf
+    const verificaCPF = await Paciente.findOne({where: {cpf: cpf}})
+    if(verificaCPF){
+        return res.status(400).json({msg: "Paciente ja cadastrado!"})
+    }
+
     if(!cep){
            if(!estado || !cidade || !endereco){
        return res.status(400).json({msg: "Informe os campos de endereço!"}) 

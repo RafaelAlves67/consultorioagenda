@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import { configDotenv } from 'dotenv'
 configDotenv()
 import Usuario from '../models/UsuarioModel.js'
+const SECRET = process.env.SECRET 
 
 
 // CRIAR USUARIO 
@@ -82,9 +83,8 @@ export async function login(req,res){
         }
 
         // inserir token 
-        const SECRET = process.env.SECRET 
         const token =  jwt.sign(verificaUsuario.id, SECRET)
-        return res.status(200).json({msg: "Usuário logado => " + token})
+        return res.status(200).json({msg: "Usuário logado => ", token})
     } catch (error) {
          console.log("Erro ao fazer login => " + error)
         return res.status(500).json({msg: " Erro ao fazer login => " + error})
